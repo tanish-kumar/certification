@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Certificate Verification</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f8;
+        }
+
+        table {
+            width: 60%;
+            margin: 50px auto;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #ff950a;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table>
+        <tr>
+            <th colspan="2">Student Course Completion Details</th>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>
+                <%= student.name %>
+            </td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td>
+                <%= student.phone %>
+            </td>
+        </tr>
+        <tr>
+            <td>Course</td>
+            <td>
+                <%= student.course %>
+            </td>
+        </tr>
+        <tr>
+            <td>Percentage</td>
+            <td>
+                <%= student.percentage %>
+            </td>
+        </tr>
+        <tr>
+            <td>Completion Date</td>
+            <td>
+                <%= student.completion_date %>
+            </td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>
+                <%= student.address %>
+            </td>
+        </tr>
+        <tr>
+            <td>Subjects</td>
+            <td>
+                <%= student.subjects %>
+            </td>
+        </tr>
+    </table>
+
+</body>
+
+</html>
