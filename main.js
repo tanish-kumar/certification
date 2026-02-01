@@ -3,7 +3,6 @@ const mysql = require("mysql2");
 const QRCode = require("qrcode");
 const path = require("path");
 const fs = require("fs");
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -26,10 +25,10 @@ const db = mysql.createConnection({
     password: "AVNS_sGhwRQTy8dydVea69d6",
     database: "defaultdb",
     port: 11737,
-  ssl: {
-    ca: fs.readFileSync(__dirname + "/ca.pem")
-  },
-  connectTimeout: 10000
+    ssl: {
+        ca: fs.readFileSync(__dirname + "/ca.pem")
+    },
+    connectTimeout: 10000
 });
 
 db.connect(err => {
@@ -55,21 +54,21 @@ app.get("/", (req, res) => {
 app.get("/verify/:id", (req, res) => {
     const id = req.params.id;
 
-    const sql = "SELECT * FROM student WHERE id = ?";
-    db.query(sql, [id], (err, result) => {
+    db.query("SELECT * FROM students WHERE id = ?", [id], (err, result) => {
         if (err) {
-            return res.send("Server Error");
+            console.log("❌ QUERY ERROR:", err);
+            return res.status(500).send("Server Error: DB Query Failed");
         }
 
         if (result.length === 0) {
-            return res.send("❌ Invalid or Fake Certificate");
+            return res.send("No student found");
         }
 
-        res.render("verify", {
-            student: result[0]
-        });
+        console.log("✅ DATA:", result[0]);
+        res.render("verify", { student: result[0] });
     });
 });
+
 
 /* =======================
    GENERATE QR FOR STUDENT
